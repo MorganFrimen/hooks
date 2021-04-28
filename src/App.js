@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
 function App() {
+  const count = [1, 2, 3];
+  const [numbers, setNumbers] = React.useState(count);
+  const addNumbers = () => {
+    const randNumber = Math.round(Math.random() * 10);
+    const newArr = [...numbers, randNumber];
+    setNumbers(newArr);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul>
+        {numbers.map((num, index) => (
+          <li key={index}>{num}</li>
+        ))}
+      </ul>
+      <button onClick={addNumbers}>Новое число</button>
     </div>
   );
 }
